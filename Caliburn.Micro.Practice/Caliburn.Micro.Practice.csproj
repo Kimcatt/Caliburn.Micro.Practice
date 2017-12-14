@@ -73,7 +73,11 @@
     </ApplicationDefinition>
     <Compile Include="Event\BrushEvent.cs" />
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\BrushViewModel.cs" />
+    <Compile Include="View\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BrushView.xaml.cs">
       <DependentUpon>BrushView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +95,10 @@
       <DependentUpon>ShellView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\BrushView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

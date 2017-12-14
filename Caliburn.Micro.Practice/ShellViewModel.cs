@@ -57,8 +57,10 @@ namespace Caliburn.Micro.Practice
             }
         }
 
+        private readonly IWindowManager _windowManager;
+
         [ImportingConstructor]
-        public ShellViewModel(ViewModel.BrushViewModel brushModel, IEventAggregator eventAggregator)
+        public ShellViewModel(ViewModel.BrushViewModel brushModel, IEventAggregator eventAggregator, IWindowManager windowManager)
         {
             BrushModel = brushModel;
             
@@ -69,7 +71,7 @@ namespace Caliburn.Micro.Practice
                 Now = DateTime.Now;
             };
             clockTimer.Start();
-
+            _windowManager = windowManager;
             eventAggregator.Subscribe(this);
         }
 
@@ -82,6 +84,11 @@ namespace Caliburn.Micro.Practice
         public void Welcome()
         {
             MessageBox.Show(string.Format("提示： {0}", Name)); //Don't do this in real life :)
+        }
+
+        public void OpenWindow()
+        {
+            _windowManager.ShowWindow(new AboutViewModel(_windowManager));
         }
 
         public void Handle(BrushEvent message)

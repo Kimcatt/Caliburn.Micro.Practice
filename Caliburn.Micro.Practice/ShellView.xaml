@@ -17,6 +17,7 @@
             <WrapPanel Orientation="Horizontal" Margin="5">
                 <Button Content="试一下" Margin="0,5,5,5" FontSize="14" Width="52" HorizontalAlignment="Left" Padding="2" cal:Message.Attach="[Event Click] = [Action Welcome()]"></Button>
                 <Button Content="再试一下" Margin="5" FontSize="14" Width="78" HorizontalAlignment="Left" Padding="2" Command="{Binding Welcome}"></Button>
+                <Button Content="打开一个窗口" Margin="5" FontSize="14" HorizontalAlignment="Left" Padding="2" cal:Message.Attach="[Event Click] = [Action OpenWindow()]"></Button>
             </WrapPanel>
             <TextBlock Margin="5" Height="26" FontSize="14" ><Run Text="当前时间：" FontSize="14"/><Run Text="{Binding Now, Converter={StaticResource dtc}}" FontSize="14"></Run></TextBlock>
             <Grid Margin="5" Width="600" Height="300" Background="LightBlue" HorizontalAlignment="Left">
