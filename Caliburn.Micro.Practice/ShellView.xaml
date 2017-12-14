@@ -7,7 +7,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:vc="clr-namespace:Kimcatt.Mvvm.ValueConverter;assembly=Kimcatt.Mvvm"
         mc:Ignorable="d"
-        Title="Caliburn.Micro.Practice" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+        Title="Caliburn.Micro.Practice" Height="500" Width="600" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <vc:DateTimerConverter x:Key="dtc"></vc:DateTimerConverter>
     </Window.Resources>
@@ -19,6 +19,14 @@
                 <Button Content="再试一下" Margin="5" FontSize="14" Width="78" HorizontalAlignment="Left" Padding="2" Command="{Binding Welcome}"></Button>
             </WrapPanel>
             <TextBlock Margin="5" Height="26" FontSize="14" ><Run Text="当前时间：" FontSize="14"/><Run Text="{Binding Now, Converter={StaticResource dtc}}" FontSize="14"></Run></TextBlock>
+            <Grid Margin="5" Width="600" Height="300" Background="LightBlue" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="400" />
+                </Grid.ColumnDefinitions>
+                <ContentControl Name="BrushModel" Margin="10" />
+                <Ellipse Grid.Column="1" Width="100" Height="100" Fill="{Binding Color}" />
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>

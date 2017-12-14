@@ -5,17 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
+using Caliburn.Micro.Practice.Event;
+using Caliburn.Micro.Practice.ViewModel;
 
 namespace Caliburn.Micro.Practice
 {
     [Export(typeof(IShell))]
-    public class ShellViewModel : Caliburn.Micro.PropertyChangedBase, IShell
+    public class ShellViewModel : Caliburn.Micro.PropertyChangedBase, IShell, IHandle<Event.BrushEvent>
     {
+        public ViewModel.BrushViewModel BrushModel { get; private set; }
+
         string name = "你好，请开始Caliburn.Micro之旅！";
 
         private System.Timers.Timer clockTimer;
 
-        DateTime now = DateTime.Now;
+        private DateTime now = DateTime.Now;
 
         public DateTime Now
         {
@@ -41,9 +46,22 @@ namespace Caliburn.Micro.Practice
             }
         }
 
-
-        public ShellViewModel()
+        private SolidColorBrush color = new SolidColorBrush(Colors.LightSkyBlue);
+        public SolidColorBrush Color
         {
+            get { return color; }
+            set
+            {
+                color = value;
+                NotifyOfPropertyChange(() => Color);
+            }
+        }
+
+        [ImportingConstructor]
+        public ShellViewModel(ViewModel.BrushViewModel brushModel, IEventAggregator eventAggregator)
+        {
+            BrushModel = brushModel;
+            
             clockTimer = new System.Timers.Timer();
             clockTimer.Interval = TimeSpan.FromSeconds(1).TotalMilliseconds;
             clockTimer.Elapsed += (sender, e) =>
@@ -51,6 +69,8 @@ namespace Caliburn.Micro.Practice
                 Now = DateTime.Now;
             };
             clockTimer.Start();
+
+            eventAggregator.Subscribe(this);
         }
 
 
@@ -62,6 +82,11 @@ namespace Caliburn.Micro.Practice
         public void Welcome()
         {
             MessageBox.Show(string.Format("提示： {0}", Name)); //Don't do this in real life :)
+        }
+
+        public void Handle(BrushEvent message)
+        {
+            Color = message.Brush;
         }
     }
 }

@@ -20,6 +20,17 @@ namespace Caliburn.Micro.Practice
 
         protected override void Configure()
         {
+
+            //Override the default subnamespaces
+            var config = new TypeMappingConfiguration
+            {
+                DefaultSubNamespaceForViewModels = "ViewModel",
+                DefaultSubNamespaceForViews = "View"
+            };
+
+            ViewLocator.ConfigureTypeMappings(config);
+            ViewModelLocator.ConfigureTypeMappings(config);
+            //Container
             var catalog = new AggregateCatalog(
                 AssemblySource.Instance.Select(x => new AssemblyCatalog(x)).OfType<ComposablePartCatalog>());
             this.container = new CompositionContainer(catalog);
@@ -27,9 +38,11 @@ namespace Caliburn.Micro.Practice
             var batch = new CompositionBatch();      //如果还有自己的部件都加在这个地方
             batch.AddExportedValue<IWindowManager>(new WindowManager());
             batch.AddExportedValue<IEventAggregator>(new EventAggregator());
+
             batch.AddExportedValue(this.container);
 
             this.container.Compose(batch);
+
         }
 
         protected override object GetInstance(Type service, string key)

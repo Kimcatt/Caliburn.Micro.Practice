@@ -71,7 +71,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Event\BrushEvent.cs" />
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="ViewModel\BrushViewModel.cs" />
+    <Compile Include="View\BrushView.xaml.cs">
+      <DependentUpon>BrushView.xaml</DependentUpon>
+    </Compile>
     <Page Include="ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +91,10 @@
       <DependentUpon>ShellView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\BrushView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -115,10 +124,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Kimcatt.Mvvm\Kimcatt.Mvvm.csproj">
       <Project>{ad345bae-fcb0-4a05-80dc-9f7f3ecb33b0}</Project>
