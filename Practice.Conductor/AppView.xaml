@@ -1,0 +1,21 @@
+﻿<Window x:Class="Practice.Conductor.AppView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Practice.Conductor"
+        mc:Ignorable="d"
+        Title="Conductor and Screen" Height="350" Width="525" SizeToContent="WidthAndHeight">
+
+    <Grid>
+        <DockPanel Background="LightGray" MinWidth="525" MinHeight="350">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="2,5,0,3">
+                <Button x:Name="ShowRedScreen" Content="Red" Width="50" Height="26" />
+                <Button x:Name="ShowGreenScreen" Content="Green" Width="50" Margin="12,0,0,0" Height="26"/>
+                <Button x:Name="ShowBlueScreen" Content="Blue" Width="50" Margin="12,0,0,0" Height="26"/>
+            </StackPanel>
+            <!--<TextBlock Text="Red" FontSize="48" FontWeight="Bold" Foreground="#FF463D" VerticalAlignment="Center" HorizontalAlignment="Center" />-->
+            <ContentControl x:Name="ActiveItem" />
+        </DockPanel>
+    </Grid>
+</Window>
