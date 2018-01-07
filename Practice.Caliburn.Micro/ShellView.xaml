@@ -1,0 +1,33 @@
+﻿<Window x:Class="Practice.Caliburn.Micro.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Practice.Caliburn.Micro"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:vc="clr-namespace:Kimcatt.Mvvm.ValueConverter;assembly=Kimcatt.Mvvm"
+        mc:Ignorable="d"
+        Title="Practice.Caliburn.Micro" Height="500" Width="600" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <vc:DateTimerConverter x:Key="dtc"></vc:DateTimerConverter>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="20">
+            <TextBlock Text="{Binding Name}" Margin="5" Height="26" FontSize="14"></TextBlock>
+            <WrapPanel Orientation="Horizontal" Margin="5">
+                <Button Content="试一下" Margin="0,5,5,5" FontSize="14" Width="52" HorizontalAlignment="Left" Padding="2" cal:Message.Attach="[Event Click] = [Action Welcome()]"></Button>
+                <Button Content="再试一下" Margin="5" FontSize="14" Width="78" HorizontalAlignment="Left" Padding="2" Command="{Binding Welcome}"></Button>
+                <Button Content="打开一个窗口" Margin="5" FontSize="14" HorizontalAlignment="Left" Padding="2" cal:Message.Attach="[Event Click] = [Action OpenWindow()]"></Button>
+            </WrapPanel>
+            <TextBlock Margin="5" Height="26" FontSize="14" ><Run Text="当前时间：" FontSize="14"/><Run Text="{Binding Now, Converter={StaticResource dtc}}" FontSize="14"></Run></TextBlock>
+            <Grid Margin="5" Width="600" Height="300" Background="LightBlue" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="400" />
+                </Grid.ColumnDefinitions>
+                <ContentControl Name="BrushModel" Margin="10" />
+                <Ellipse Grid.Column="1" Width="100" Height="100" Fill="{Binding Color}" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
