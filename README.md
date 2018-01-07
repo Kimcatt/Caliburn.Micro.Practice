@@ -1,2 +1,2 @@
-# PracticeCaliburn.Micro
+# Practice.Caliburn.Micro
 Run toward Caliburn.Micro
